@@ -6,11 +6,20 @@
 //
 
 import SwiftUI
+import SwiftSoup
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Button("Run SwiftSoup", action: {
+            let html = "<html><head><title>First parse</title></head><body><p>Parse HTML into doc</p></body</html>"
+            
+            do {
+                let document: Document = try SwiftSoup.parse(html)
+                return try print(document.text())
+            } catch {
+                print(error.localizedDescription)
+            }
+        })
     }
 }
 
